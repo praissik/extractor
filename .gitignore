@@ -1,0 +1,5 @@
+# Environment Credentials
+.env
+
+# Others
+front/node_modules

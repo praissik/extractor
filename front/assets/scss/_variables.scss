@@ -1,0 +1,27 @@
+$base-white: #ffffff;
+$base-black: #000000;
+$base-gray: #dddddd;
+
+$mobile-large: 767px;
+$tablet-small: 768px;
+$tablet-large: 1279px;
+$desktop-small: 1280px;
+$desktop-large: 1920px;
+
+@mixin desktop {
+  @media screen and (min-width: $desktop-small) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: $tablet-small) and (max-width: $tablet-large) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $mobile-large) {
+    @content;
+  }
+}
