@@ -56,7 +56,6 @@ func GenerateReport(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		data.IsOk = -1
-		fmt.Println(err)
 		util.CheckErr(err)
 	} else {
 
