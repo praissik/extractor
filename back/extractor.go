@@ -25,6 +25,6 @@ func main() {
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"})
+
 	log.Fatalln(http.ListenAndServe(":8080", handlers.CORS(originsOk, headersOk, methodsOk)(r)))
-	//log.Fatalln(http.ListenAndServe(":8080", r))
 }
