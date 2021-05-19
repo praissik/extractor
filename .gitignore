@@ -1,5 +1,3 @@
-# Environment Credentials
 .env
-
-# Others
-front/node_modules
+front/node_modules/
+front/yarn*

@@ -74,7 +74,7 @@ func GenerateReport(w http.ResponseWriter, r *http.Request) {
 			data.IsOk = 1
 			data.ReportName = name + ".xlsx"
 			data.FileName = uuid + ".xlsx"
-			url := "./front/static/" + data.FileName
+			url := "../front/static/" + data.FileName
 			/*
 				fmt.Println(uuid)
 				fmt.Println(data.ReportName)

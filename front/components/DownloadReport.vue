@@ -26,7 +26,7 @@
         console.log("Downloading report")
         this.$axios({
           url,
-          baseURL: "http://localhost:3000/",
+          baseURL: "http://192.168.2.234",
           method: 'GET',
           responseType: 'blob',
         }).then((response) => {
