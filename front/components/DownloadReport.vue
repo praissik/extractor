@@ -26,7 +26,7 @@
         console.log("Downloading report")
         this.$axios({
           url,
-          baseURL: "http://localhost:3000/",
+          baseURL: process.env.HOME_URL_FRONT,
           method: 'GET',
           responseType: 'blob',
         }).then((response) => {
