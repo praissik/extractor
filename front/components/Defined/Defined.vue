@@ -87,7 +87,7 @@
       },
 
       generateReport() {
-        console.log("Generating reports")
+        console.log("Generating report")
         this.pausingButtonEvent(3000)
         //this.$eventHub.$emit('notify', "info")
         this.$axios

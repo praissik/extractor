@@ -21,7 +21,6 @@
 */
     methods: {
       downloadReport(data) {
-        console.log(data)
         var url = data.fileName
         console.log("Downloading report")
         this.$axios({
@@ -32,14 +31,14 @@
         }).then((response) => {
           console.log("Pobierz ten plik: " + data.reportName)
 
-            var fileURL = window.URL.createObjectURL(new Blob([response.data]));
-            var fileLink = document.createElement('a');
+          var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+          var fileLink = document.createElement('a');
 
-            fileLink.href = fileURL;
-            fileLink.setAttribute('download', data.reportName);
-            document.body.appendChild(fileLink);
+          fileLink.href = fileURL;
+          fileLink.setAttribute('download', data.reportName);
+          document.body.appendChild(fileLink);
 
-            fileLink.click();
+          fileLink.click();
         });
       }
     },

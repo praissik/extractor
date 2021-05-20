@@ -1,7 +1,7 @@
 <template>
   <div class="main-page">
     <div class="header">
-      <img src="@/assets/images/logo_only.png">
+      <img src="@/assets/images/logo.png">
       <div class="header_title">Generator raportów</div>
     </div>
     <div>
