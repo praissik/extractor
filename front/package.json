@@ -9,14 +9,18 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
     "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/dotenv": "1.4.1",
-    "@nuxtjs/proxy": "2.1.0",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.0",
-    "node-sass": "^5.0.0",
+    "node-sass": "^6.0.1",
     "nuxt": "^2.14.6",
-    "sass-loader": "^10.1.0"
+    "sass-loader": "^10.1.0",
+    "vue-lodash": "^2.1.2",
+    "vuelidate": "^0.7.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.12.1"
+  }
 }

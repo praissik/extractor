@@ -1,64 +1,78 @@
 {
     "queries": [{
+        "id": 0,
         "name": "[K] Lista klientów - porozumienie MBL",
         "query": "SELECT Knt_Akronim as 'Akronim' ,Knt_Nazwa1 as 'Nazwa' ,[Atr_wartosc] as 'POROZUMIENIE MBL' FROM  [CDN].[KntKarty] (nolock) JOIN [CDN].[Atrybuty] (nolock) ON [Atr_ObiNumer] = [Knt_GIDNumer] AND  Atr_ObiTyp = 32 and Atr_AtkId = 148 AND Atr_Wartosc IN('TAK', 'TAK-2020')"
     },
     {
+        "id": 1,
         "name": "[K] Raport: Kontrahent + zakupowiec.",
         "query": "SELECT Knt_Akronim as 'Akronim' ,Knt_Nazwa1 as 'Nazwa' ,[Atr_wartosc] as 'Zakupowiec' FROM [CDN].[KntKarty] (nolock) JOIN [CDN].[Atrybuty] (nolock) ON [Atr_ObiNumer] = [Knt_GIDNumer] AND [Atr_AtkId] = 164"
     },
     {
+        "id": 2,
         "name": "[T] Dostawcy: KOD, Symbol, Nazwa, Grupa",
         "query": "SELECT DISTINCT Twr_Kod as 'Kod towaru', Twr_Katalog as 'Symbol', Twr_Nazwa as 'Nazwa', CDN.TwrGrupaPelnaNazwa (gr.TwG_GIDNumer) as Grupa FROM cdn.TwrKarty (nolock) left join cdn.TwrDost (nolock) on Twr_GIDNumer=TWD_TwrNumer left join cdn.KntKarty (nolock) on Knt_GIDNumer=TWD_KntNumer join CDN.TwrGrupy g (nolock) on g.TwG_GIDNumer=Twr_GIDNumer and g.TwG_GIDTyp=16 join CDN.TwrGrupy gr (nolock) on g.TwG_GrONumer = gr.TwG_GIDNumer where Knt_Akronim = @Akronim AND Twr_Archiwalny = 0",
         "needed": [0]
     },
     {
+        "id": 3,
         "name": "[T] Produkty z atrybutem URZ",
         "query": "SELECT DISTINCT Twr_Kod as 'Kod towaru', Twr_Katalog as 'Symbol towaru', CONCAT(Twr_Nazwa, ' ', Twr_Nazwa1) as 'Nazwa towaru', isnull(Knt_Akronim, '') as 'Dostawca', CDN.TwrGrupaPelnaNazwa (gr.TwG_GIDNumer) as 'Grupa', Atr_Wartosc as 'Atrybuty: URZ' FROM CDN.TwrKarty (nolock) left join cdn.TwrDost (nolock) on Twr_GIDTyp = TWD_TwrTyp AND Twr_GIDNumer = TWD_TwrNumer and twr_dstdomyslny=twd_twrlp left join cdn.KntKarty (nolock) on Knt_GIDNumer=TWD_KntNumer left join cdn.TwrOpisy (nolock) on Twr_GIDNumer=TwO_TwrNumer join CDN.TwrGrupy g (nolock) on g.TwG_GIDNumer= Twr_GIDNumer and g.TwG_GIDTyp=16 join CDN.TwrGrupy gr (nolock) on g.TwG_GrONumer = gr.TwG_GIDNumer join CDN.Atrybuty (nolock) on Twr_GIDTyp = Atr_ObiTyp AND Twr_GIDNumer = Atr_ObiNumer AND Atr_AtkId = 24 WHERE Twr_Archiwalny = 0"
     },
     {
+        "id": 4,
         "name": "[T] Symbol, KOD, Nazwa, EAN, Mag, Dost",
         "query": "SELECT Twr_Katalog as 'Symbol', Twr_Kod as 'Kod', Twr_Nazwa as 'Nazwa', Twr_Ean as 'EAN', Knt_Akronim as 'Dostawca', MAG_Kod as 'Magazyn' FROM cdn.TwrKarty (nolock) left join cdn.TwrDost (nolock) on Twr_GIDNumer=TWD_TwrNumer left join cdn.KntKarty (nolock) on Knt_GIDNumer=TWD_KntNumer left join cdn.Magazyny (nolock) on MAG_GIDNumer = Twr_MagNumer WHERE Twr_Typ IN (1,2) AND Twr_Archiwalny = 0"
     },
     {
+        "id": 5,
         "name": "[T] KOD, Grupa, Dost, KrajPoch, PCN, EAN, Waga",
         "query": "SELECT DISTINCT Twr_Kod as 'Kod', Twr_Katalog as 'Symbol', Twr_Nazwa as 'Nazwa', CDN.TwrGrupaPelnaNazwa (gr.TwG_GIDNumer) as 'Grupa towarowa', Knt_Akronim as 'Akronim dostawcy', Twr_KrajPoch as 'Kraj pochodzenia', Twr_PCN as 'Kod PCN', Twr_Ean as 'EAN', Twr_Waga as 'Waga netto', Twr_WagaBrutto as 'Waga brutto' FROM cdn.TwrKarty (nolock) JOIN CDN.TwrGrupy g (nolock) ON g.TwG_GIDNumer=Twr_GIDNumer AND g.TwG_GIDTyp=16 JOIN CDN.TwrGrupy gr (nolock) ON g.TwG_GrONumer = gr.TwG_GIDNumer LEFT JOIN cdn.TwrDost (nolock) ON Twr_GIDNumer = TWD_TwrNumer AND Twr_GIDTyp = TWD_TwrTyp JOIN cdn.KntKarty (nolock) on TWD_KntNumer = Knt_GidNumer WHERE Twr_Typ IN (1,2) AND Twr_Archiwalny = 0 AND CDN.TwrGrupaPelnaNazwa (gr.TwG_GIDNumer) not like  'DZ-CHEMIA I SPRZĘT%'"
     },
     {
+        "id": 6,
         "name": "Numery seryjne urządzeń",
         "query": "SELECT CONCAT(CASE WHEN TrN_GIDTyp = '1616' THEN 'RW' WHEN TrN_GIDTyp = '1600' THEN 'MM' WHEN TrN_GIDTyp = '2009' THEN 'WZ' WHEN TrN_GIDTyp = '2041' THEN 'FS' ELSE 'inne' END, '-', TrN_TrNNumer,'/',right(TrN_TrNRok,2),'/',right(TrN_RokMiesiac,2),'/',TrN_TrNSeria) AS 'Numer_dokumentu' ,Knt_Akronim as 'Akronim kontrahenta' ,Knt_Nazwa1 as 'Nazwa kontrahenta' ,Dst_Cecha as 'Cecha towaru' ,TrE_TwrKod as 'Kod towaru' FROM CDN.TraSElem (nolock) INNER JOIN CDN.TraElem (nolock) ON CDN.TraSElem.TrS_GIDNumer = CDN.TraElem.TrE_GIDNumer AND CDN.TraSElem.TrS_GIDLp = CDN.TraElem.TrE_GIDLp INNER JOIN CDN.TraNag (nolock) ON CDN.TraElem.TrE_GIDNumer = CDN.TraNag.TrN_GIDNumer INNER JOIN CDN.Dostawy (nolock) ON CDN.TraSElem.TrS_DstTyp = CDN.Dostawy.Dst_GIDTyp AND CDN.TraSElem.TrS_DstNumer = CDN.Dostawy.Dst_GIDNumer LEFT JOIN CDN.KntKarty (nolock) on Knt_GIDNumer = TrN_KntNumer WHERE TrE_TwrKod = @KodTowaru AND TrN_GIDTyp IN ('1616', '1600', '2009', '2041')",
         "needed": [1]
     },
     {
+        "id": 7,
         "name": "Raport OS potwierdzone z serią WDZ.",
         "query": "SELECT cdn.GetDocumentNumber(ZaN_GIDTyp, ZaN_GIDNumer) as 'Numer dokumentu', Knt_Akronim as 'Akronim kontrahenta', Knt_Nazwa1 as 'Nazwa kontrahenta', CONCAT(Knt_Ulica, ' ',Knt_Miasto) as 'Adres', DATEADD(day,ZaN_DataWystawienia,CONVERT(DATE,'1800-12-28',120)) as 'Data wystawienia', ZaE_TwrKod as 'Kod towaru', ZaE_TwrNazwa as 'Nazwa towaru' FROM cdn.ZamNag (nolock) JOIN cdn.KntKarty (nolock) ON ZaN_KntNumer = Knt_GIDNumer JOIN cdn.ZamElem (nolock) ON ZaN_GIDNumer = ZaE_GIDNumer WHERE ZaN_ZamTyp = 768 AND ZaN_ZamSeria = 'WDZ' AND ZaN_PotwOferty = 1 AND ZaN_ZamRok = @RokOS",
         "needed": [3]
     },
     {
+        "id": 8,
         "name": "Raport promocji dla klientów",
         "query": "SELECT TwG_Kod as 'Kod towaru', Twr_Katalog as 'Symbol', TwG_Nazwa as 'Nazwa', TPR_Wartosc as 'Wartosc', TPR_Waluta as 'Waluta' FROM cdn.TwrPromocje (nolock) LEFT JOIN cdn.TwrKarty (nolock) ON TPR_TwrNumer = Twr_GIDNumer AND TPR_TwrTyp =Twr_GIDTyp LEFT JOIN cdn.TwrGrupy (nolock) ON TPR_TwrNumer = TwG_GIDNumer AND TPR_TwrTyp = TwG_GIDTyp JOIN cdn.KntPromocje (nolock) ON KPR_PrmId = TPR_PrmId WHERE KPR_KntNumer = (SELECT Knt_GIDNumer FROM cdn.KntKarty (nolock) WHERE Knt_Akronim = @Akronim)",
         "needed": [0]
     },
     {
+        "id": 9,
         "name": "Raport Symbol, KOD, Nazwa, EAN produktów",
         "query": "SELECT Twr_Katalog as 'Symbol', Twr_Kod as 'Kod produktu', Twr_Nazwa as 'Nazwa produktu', Twr_Ean as 'EAN' FROM cdn.TwrKarty (nolock)"
     },
     {
+        "id": 10,
         "name": "Raport upustów dla produktów",
         "query": "select Knt_Akronim as 'Akronim kontrahenta', Knt_Miasto as 'Miasto', Knt_Nazwa1 as 'Nazwa' ,Prm_Akronim as 'Nazwa promocji' ,Twr_kod as 'Kod produktu' ,Twr_Katalog as 'Symbol' ,TPR_Wartosc as 'Cena' from cdn.TwrPromocje (nolock) left join cdn.twrkarty (nolock) on TPR_TwrNumer = Twr_GIDNumer left join cdn.PrmKarty (nolock) on TPR_PrmId = PrM_ID left join cdn.KntPromocje (nolock) on TPR_PrmId = KPR_PrmId left join cdn.KntKarty (nolock) on Knt_GIDNumer = KPR_KntNumer where Twr_Katalog = @SymbolTowaru",
         "needed": [2]
     },
     {
+        "id": 11,
         "name": "Raport waga netto po dostawcach",
         "query": "SELECT Twr_Kod as 'Kod towaru', Twr_Katalog as 'Symbol', Twr_Nazwa as 'Nazwa', CONCAT(Twr_Waga, ' ', Twr_WJm) as 'Waga netto' FROM cdn.TwrDost with (nolock) left join cdn.TwrKarty with (nolock) on TWD_TwrNumer=Twr_GIDNumer and Twr_DstDomyslny=0 left join cdn.KntKarty with (nolock) on Knt_GIDNumer=TWD_KntNumer where Knt_Akronim = @Akronim UNION SELECT Twr_Kod as 'Kod towaru', Twr_Katalog as 'Symbol', Twr_Nazwa as 'Nazwa', CONCAT(Twr_Waga, ' ', Twr_WJm) as 'Waga netto' FROM cdn.TwrDost with (nolock) left join cdn.TwrKarty with (nolock) on TWD_TwrNumer=Twr_GIDNumer and  Twr_DstDomyslny=TWD_TwrLp left join cdn.KntKarty with (nolock) on Knt_GIDNumer=TWD_KntNumer where Knt_Akronim = @Akronim",
         "needed": [0]
     },
     {
+        "id": 12,
         "name": "Towary po dostawcach z datami ważności",
         "query": "SELECT Twr_Kod as 'Kod towaru', Twr_TerminW as 'Termin ważności' FROM cdn.TwrKarty (nolock) left join cdn.TwrDost (nolock) on Twr_GIDNumer=TWD_TwrNumer left join cdn.KntKarty (nolock) on Knt_GIDNumer=TWD_KntNumer where Knt_Akronim = @Akronim AND Twr_PartiaDataW = 1 AND Twr_Archiwalny = 0",
         "needed": [0]
     },
     {
+        "id": 13,
         "name": "Kontrahenci z adresami wysyłkowymi i archiwalnymi",
         "query": "select case when KnA_DataArc > 0 then 'tak' else 'nie' end as 'czy_archiwalny', case when KnA_Wysylkowy=0 then 'nie' else 'tak' end as 'adres wysyłkowy', Knt_Akronim,  KnA_Nip, KnA_KodP, KnA_Miasto, KnA_Ulica, concat(KnT_Nazwa1, KnT_Nazwa2, KnT_Nazwa3) as nazwa from cdn.KntKarty (nolock) join CDN.KntAdresy (nolock) on Knt_GIDNumer=KnA_KntNumer WHERE KnA_KntTyp=32"
     }]

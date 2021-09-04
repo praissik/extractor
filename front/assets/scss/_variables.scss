@@ -1,12 +1,19 @@
-$base-white: #ffffff;
-$base-black: #000000;
-$base-gray: #dddddd;
+$base-black: #020906;
+$base-gray-light: #edeeec;
+$base-gray-dark: #d1cdcd;
+$base-white: #fbfafa;
+
+$argenta: #D84315;
+$argenta-transparent-dark: #d8421548;
+$argenta-transparent-light: #d842151e;
 
 $mobile-large: 767px;
 $tablet-small: 768px;
 $tablet-large: 1279px;
 $desktop-small: 1280px;
 $desktop-large: 1920px;
+
+$font-color-primary:  #4b4d49;
 
 @mixin desktop {
   @media screen and (min-width: $desktop-small) {

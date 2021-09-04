@@ -52,7 +52,7 @@
     },
 
     mounted() {
-      this.$eventHub.on('notify', (data) => {
+      this.$nuxt.on('notify', (data) => {
         console.log(data)
         if (data == "info") {
           this.notifyInfo()

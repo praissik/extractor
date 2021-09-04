@@ -1,23 +1,25 @@
 package main
 
 import (
+	"extractor/back/pkg/department"
+	"extractor/back/pkg/logger"
+	"extractor/back/pkg/parameter"
 	"extractor/back/pkg/report"
-	"extractor/back/pkg/util"
+	"extractor/back/pkg/server"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/handlers"
-	"github.com/gorilla/mux"
 )
 
 func main() {
-	util.ConsoleLog("Server has been started")
+	logger.Console("Initializing data")
+	report.Init()
+	parameter.Init()
+	department.Init()
+	logger.Console("Server has been started")
 
-	r := mux.NewRouter().StrictSlash(true)
-
-	//HOME
-	r.HandleFunc("/reports", report.GetReports).Methods("GET")
-	r.HandleFunc("/report/generate", report.GenerateReport).Methods("GET")
+	r := server.Router()
 
 	http.Handle("/", r)
 
