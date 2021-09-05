@@ -1,26 +1,19 @@
 <template>
-
   <div class="reports">
-
     <!--  <Notifications emit="notify"></Notifications> -->
-  <v-simple-table>
-    <template v-slot:default>
-      <tbody>
-        <tr
-          v-for="(report, lp) in reports"
-          :key="report.id"
-          @click.stop="rowClicked(report)"
+    <ul class="reports__list">
+      <li v-for="(r, lp) in filterReports" :key="r.id"
+          class="reports__list__row"
+          :class="{first: lp == 0}"
+          @click="rowClicked(r)"
         >
-        
-          <td>{{ lp+1 }}</td>
-          <td>{{ report.reportID }}</td>
-          <td>{{ report.name }}</td>
-          <td>{{ report.parametersID }}</td>
-          <td>{{ report.departmentID }}</td>
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
+          {{ lp+1 }}
+          {{ r.reportID }}
+          {{ r.name }}
+          {{ r.parametersID }}
+          {{ r.departmentID }}
+      </li>
+    </ul>
   <ParametersForm />
           <!-- <v-card-text v-for="(paramID, lp) in report.parametersID" :key="paramID">
             <v-col cols="5" v-if="paramID == 1">
@@ -75,8 +68,23 @@
     },
 
     computed: {
-      reports() {
+      reports () {
         return this._.orderBy(this.$store.state.reports.reports, 'name')
+      },
+      filterReports () {
+        return this.reports.filter(data => (!this.filterName
+            || data.name.toLowerCase().includes(this.filterName.toLowerCase()))
+              &&
+              (this.filterDepartment === 0
+              || data.departmentID === this.filterDepartment))
+      },
+      filterName () {
+        console.log(this.$store.state.reports.filterName)
+        return this.$store.state.reports.filterName
+      },
+      filterDepartment () {
+        console.log(this.$store.state.reports.filterDepartment)
+        return this.$store.state.reports.filterDepartment
       }
     },
 
@@ -112,16 +120,34 @@
 
 .reports {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100%;
-  align-items: center;
-  .el-table {
-    width: 80%;
-    &__header-wrapper {
-      display: none;
+  padding: 20px 0 0 20px;
+  width: 800px;
+  &__list {
+    list-style-type: none;
+    font-size: 18px;
+    width: 100%;
+    background-color: $base-white;
+    border: 20px solid $base-white;
+    &__row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      height: 56px;
+      padding-left: 30px;
+      border-top: 1px solid $base-gray-dark1;
+      &.active {
+        color: $argenta;
+      }
+      &.first{
+        border-top: 0;
+      }
+      &:hover {
+        background-color: $base-gray-light1;
+      }
     }
+  }
+  ul{
+    padding-left: 0;
   }
 }
 

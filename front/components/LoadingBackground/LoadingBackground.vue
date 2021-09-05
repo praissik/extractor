@@ -18,7 +18,7 @@
       dataLoaded () {
         return Object.keys(this.$store.state.reports.departments).length > 0
       }
-    },
+    }
   }
 </script>
 
@@ -29,14 +29,14 @@
   align-items: center;
   position: absolute;
   background-color: white;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  img {
-    width: 300px;
+  & img {
+    width: 220px;
   }
   .text {
     display: flex;
-    flex-basis: min-content;
     font-size: 92px;
     padding-left: 3vw;
   }
@@ -51,7 +51,7 @@
 
 @keyframes hiding {
   0% {opacity: 1}
-  99% {opacity: 0; z-index: 0}
+  99% {opacity: 0; z-index: 1}
   100% {opacity: 0; z-index: -1}
 }
 </style>

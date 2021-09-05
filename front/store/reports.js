@@ -1,7 +1,9 @@
 export const state = () => ({
     reports: [],
     parameters: [],
-    departments: []
+    departments: [],
+    filterDepartment: 0,
+    filterName: ''
 })
 
 export const getters = {
@@ -21,6 +23,14 @@ export const mutations = {
 
     setDepartments (state, departments) {
         state.departments = departments
+    },
+
+    setFilterDepartment (state, filterDepartment) {
+        state.filterDepartment = filterDepartment
+    },
+
+    setFilterName (state, filterName) {
+        state.filterName = filterName
     }
 }
 
@@ -94,6 +104,14 @@ export const actions = {
 
             fileLink.click()
         })
+    },
+
+    SetFilterDepartment({ commit }, filterDepartment) {
+        commit('setFilterDepartment', filterDepartment)
+    },
+
+    SetFilterName({ commit }, filterName) {
+        commit('setFilterName', filterName)
     }
 }
 
