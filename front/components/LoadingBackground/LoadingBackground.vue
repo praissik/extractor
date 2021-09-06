@@ -30,15 +30,17 @@
   position: absolute;
   background-color: white;
   z-index: 1;
+  max-width: 1200px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  padding-bottom: 100px;
   & img {
-    width: 220px;
+    width: 24vh;
   }
   .text {
     display: flex;
-    font-size: 92px;
-    padding-left: 3vw;
+    font-size: 8vh;
+    padding-left: 2vw;
   }
 }
 
@@ -53,5 +55,17 @@
   0% {opacity: 1}
   99% {opacity: 0; z-index: 1}
   100% {opacity: 0; z-index: -1}
+}
+
+@media (max-width: 800px) {
+  .loading-background {
+    & img {
+      width: 23vw;
+    }
+    .text {
+      font-size: 8vw;
+      padding-left: 3vw;
+    }
+  }
 }
 </style>

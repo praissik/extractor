@@ -7,12 +7,15 @@ export const state = () => ({
 })
 
 export const getters = {
-    reportsCount (state) {
-      return state.reports.length
-    }
 }
 
 export const mutations = {
+    setData (state, data) {
+        state.reports = data.reports
+        state.parameters = data.parameters
+        state.departments = data.departments
+    },
+    
     setReports (state, reports) {
         state.reports = reports
     },
@@ -35,6 +38,16 @@ export const mutations = {
 }
 
 export const actions = {
+
+    GetData({ commit }) {
+        return this.$axios.get('/data')
+            .then(response => {
+                commit('setData', response.data)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    },
 
     GetReports({ commit }) {
         return this.$axios.get('/reports')

@@ -12,8 +12,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 280px;
     padding-left: 36px;
+    max-width: 280px;
+    width: 100%;
     &__img {
         height: 44px;
     }

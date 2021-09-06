@@ -3,12 +3,15 @@
     <div class="main">
       <LoadingBackground />
       <div class="header">
-        <Logo />
-        <FilterReports />
+        <div class="header__item">
+          <Logo />
+          <FilterReports />
+          <DepartmentsMenu />
+        </div>
       </div>
       <div class="body">
         <div class="leftside">
-          <Departments />
+          <DepartmentsList />
         </div>
         <div class="article">
           <Reports />
@@ -30,49 +33,54 @@
     },
 
     mounted() {
-      this.$store.dispatch('reports/GetReports')
-      this.$store.dispatch('reports/GetParameters')
-      this.$store.dispatch('reports/GetDepartments')
+      this.$store.dispatch('reports/GetData')
     }
   }
 </script>
 
 <style lang="scss">
-.header, .body, .footer {
-  width: 100vw;
+.body, .footer {
+  max-width: 1200px;
+  width: 100%;
 }
-
 .main {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   min-height: 100vh;
   color: $font-color-primary;
 }
 .header {
   display: flex;
+  justify-content: center;
+  width: 100%;
   height: 80px;
   background-color: $base-white;
+  &__item {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+  }
 }
 .body {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
   height: fit-content;
   margin-bottom: 100px;
-  // padding: 0 24px;
   .leftside {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
     height: fit-content;
-    // padding: 0 80px 0 0;
+    max-width: 230px;
+    width: 100%;
   }
   .article {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     height: fit-content;
+    width: 100%;
   }
 }
 .footer {
@@ -83,5 +91,13 @@
   padding-right: 20px;
   font-size: 14px;
   background-color: $base-gray-light1;
+}
+
+@media (max-width: 800px) {
+  .body {
+    .leftside {
+      display: none;
+    }
+  }
 }
 </style>

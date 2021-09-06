@@ -24,11 +24,16 @@
 .filter {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
-  padding: 0;
-  height: 80px;
+  align-items: center;
+  padding: 6px 60px 0 60px;
+  max-width: 500px;
+  min-width: 400px;
+  width: 100%;
   .v-input {
-    font-size: 20px;
+    font-size: 16px;
+  }
+  .v-label, .v-text-field input {
+    padding-left: 10px;
   }
 }
   

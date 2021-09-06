@@ -7,43 +7,13 @@
           :class="{first: lp == 0}"
           @click="rowClicked(r)"
         >
-          {{ lp+1 }}
-          {{ r.reportID }}
+          {{ lp+1 }}.
           {{ r.name }}
           {{ r.parametersID }}
           {{ r.departmentID }}
       </li>
     </ul>
   <ParametersForm />
-          <!-- <v-card-text v-for="(paramID, lp) in report.parametersID" :key="paramID">
-            <v-col cols="5" v-if="paramID == 1">
-              <v-text-field :label="lp+1 + '. ' + parameters[paramID].name" v-model="data.akronim" :rules="rules.akronim" required />
-            </v-col>
-            <v-col cols="5" v-if="paramID == 2">
-              <v-text-field :label="lp+1 + '. ' + parameters[paramID].name" v-model="data.kodTowaru" :rules="rules.kodTowaru" required />
-            </v-col>
-            <v-col cols="5" v-if="paramID == 3">
-              <v-text-field :label="lp+1 + '. ' + parameters[paramID].name" v-model="data.symbolTowaru" :rules="rules.symbolTowaru" required />
-            </v-col>
-            <v-col cols="5" v-if="paramID == 4">
-              <v-text-field :label="lp+1 + '. ' + parameters[paramID].name" v-model="data.rokOS" :rules="rules.rokOS" required />
-            </v-col>
-          </v-card-text> -->
-          <!-- <v-card-actions class="justify-end">
-            <v-spacer></v-spacer>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click="dialogFormVisible = false">
-              Close
-            </v-btn>
-            <v-btn
-              color="blue darken-1"
-              text
-              @click="generateReport(), dialogFormVisible = false">
-              <i class="fas fa-file-download"></i>
-            </v-btn>
-          </v-card-actions> -->
   </div>
 </template>
 
@@ -120,24 +90,22 @@
 
 .reports {
   display: flex;
-  padding: 20px 0 0 20px;
-  width: 800px;
+  padding: 15px 0 0 20px;
   &__list {
     list-style-type: none;
-    font-size: 18px;
+    font-size: 16px;
     width: 100%;
     background-color: $base-white;
-    border: 20px solid $base-white;
+    border-top: 15px solid $base-white;
+    border-left: 20px solid $base-white;
+    border-right: 20px solid $base-white;
     &__row {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      height: 56px;
-      padding-left: 30px;
+      padding: 15px 20px 15px 20px;
       border-top: 1px solid $base-gray-dark1;
-      &.active {
-        color: $argenta;
-      }
+      transition: 250ms ease-out;
       &.first{
         border-top: 0;
       }
@@ -151,4 +119,10 @@
   }
 }
 
+
+@media (max-width: 800px) {
+  .reports {
+    padding-right: 20px;
+  }
+}
 </style>
