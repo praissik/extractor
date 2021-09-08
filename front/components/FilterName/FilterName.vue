@@ -23,30 +23,33 @@
 <style lang="scss">
 .filterName {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 6px 20px 0 30px;
-  max-width: 450px;
-  min-width: 450px;
   width: 100%;
+  padding-top: 22px;
   .v-input {
-    font-size: 16px;
+    max-width: 450px;
+    padding: 0 0 0 80px;
   }
   .v-label, .v-text-field input {
     padding-left: 10px;
   }
 }
 @media (max-width: 800px) {
-  .departments-menu {
+  .filterName {
+    .v-input {
+      max-width: 350px;
+      padding: 0 10px 0 80px;
+    }
+  }
+}
+@media (max-width:  620px) {
+  .filterName {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    max-width: 800px;
-    width: 100%;
-    padding: 10px 40px 20px;
-    &__selected {
-      max-width: 200px;
-      width: 100%;
+  width: 100%;
+    max-width: 620px;
+    .v-input {
+      max-width: 390px;
+      min-width: 200px;
+      padding: 0 0 0 50px;
     }
   }
 }

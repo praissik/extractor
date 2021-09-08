@@ -6,9 +6,11 @@
         Raporty
       </div>
     </div>
-    <div class="loading-page__loader">
-      <div class="loading-page__loader__loaderBar"></div>
-    </div>
+    <template v-if="!dataLoaded">
+      <div class="loading-page__loader">
+        <div class="loading-page__loader__loaderBar"></div>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -38,11 +40,11 @@
   z-index: 1;
   width: 100%;
   height: 100vh;
-  padding-bottom: 50px;
   &__logo {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 25vh;
     & img {
       width: 22vh;
     }
@@ -57,8 +59,8 @@
     margin:0 auto;
     border-radius:10px;
     border:4px solid transparent;
-    position:relative;
-    margin-top: 100px;
+    position:absolute;
+    margin-top: 10vh;
     padding:3px;
     &:before {
       content:'';
@@ -99,6 +101,7 @@
 @media (max-width: 800px) {
   .loading-page {
     &__logo {
+      padding-bottom: 17vh;
       & img {
         width: 22vw;
       }
@@ -106,6 +109,10 @@
         font-size: 8vw;
         padding-left: 3vw;
       }
+    }
+    &__loader { 
+      width: 35vw;
+      padding: 0.5vw;
     }
   }
 }

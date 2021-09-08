@@ -60,7 +60,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding: 10px 30px 10px 20px;
+      padding: 10px 0 10px 20px;
       border-top: 1px solid $base-gray-dark1;
       cursor: default;
       &.active {

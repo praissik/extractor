@@ -139,7 +139,8 @@
 
 @media (max-width: 800px) {
   .reports {
-    padding-right: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

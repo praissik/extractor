@@ -53,12 +53,11 @@
 .header {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
   background-color: $base-white;
   &__item {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     max-width: 1200px;
     width: 100%;
   }
@@ -84,5 +83,4 @@
   font-size: 14px;
   background-color: $base-gray-light1;
 }
-
 </style>
