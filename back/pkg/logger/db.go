@@ -9,6 +9,7 @@ const (
 	REMOVE   = 4
 	GENERATE = 5
 
+	DATA       = 0
 	REPORT     = 1
 	PARAMETER  = 2
 	DEPARTMENT = 3

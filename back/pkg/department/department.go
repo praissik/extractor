@@ -2,7 +2,6 @@ package department
 
 import (
 	"extractor/back/pkg/db"
-	"extractor/back/pkg/logger"
 )
 
 type Department struct {
@@ -37,6 +36,5 @@ func LoadAll() map[int32]Department {
 }
 
 func Get() map[int32]Department {
-	go logger.DB(logger.GET, logger.DEPARTMENT, 0, true)
 	return Departments
 }

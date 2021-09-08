@@ -2,7 +2,6 @@ package parameter
 
 import (
 	"extractor/back/pkg/db"
-	"extractor/back/pkg/logger"
 )
 
 type Parameter struct {
@@ -33,6 +32,5 @@ func LoadAll() map[int32]Parameter {
 }
 
 func Get() map[int32]Parameter {
-	go logger.DB(logger.GET, logger.PARAMETER, 0, true)
 	return Parameters
 }

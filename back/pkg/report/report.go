@@ -64,7 +64,6 @@ func LoadAll() map[int32]Report {
 }
 
 func Get() map[int32]Report {
-	go logger.DB(logger.GET, logger.REPORT, 0, true)
 	return Reports
 }
 

@@ -9,6 +9,7 @@ import (
 func Router() *mux.Router {
 	r := mux.NewRouter().StrictSlash(true)
 
+	r.HandleFunc("/api/data", handler.GetData).Methods("GET")
 	r.HandleFunc("/api/reports", handler.GetReports).Methods("GET")
 	r.HandleFunc("/api/parameters", handler.GetParameters).Methods("GET")
 	r.HandleFunc("/api/departments", handler.GetDepartments).Methods("GET")

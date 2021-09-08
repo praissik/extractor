@@ -17,6 +17,21 @@ $desktop-large: 1920px;
 
 $font-color-primary:  #4b4d49;
 
+$text-colour: rgb(14, 10, 231);
+// Bar Settings
+$bar-colour: $text-colour;
+$bar-animation-duration: 2.8s;
+
+// These are not to be adjusted; it would mess 
+// with the angles. If anyone knows how to make 
+// the angles dynamic. I'd love to hear it.
+$bar-width: 3px;
+$bar-height: 25px;
+$bar-count: 7;
+
+// Generated settings
+$bar-animation-duration-single: -$bar-animation-duration / $bar-count;
+
 @mixin desktop {
   @media screen and (min-width: $desktop-small) {
     @content;
