@@ -13,7 +13,6 @@
           @click="selectedDepartment = d.departmentID"
         >
         {{ d.name }}
-        {{ d.departmentID }}
       </li>
     </ul>
   </div>
@@ -48,8 +47,10 @@
 <style lang="scss">
 .departments {
   display: flex;
-  padding: 15px 0 0 0;
+  height: fit-content;
+  max-width: 230px;
   width: 100%;
+  padding: 15px 0 0 0;
   &__list {
     list-style-type: none;
     font-size: 16px;
@@ -61,6 +62,7 @@
       align-items: center;
       padding: 10px 30px 10px 20px;
       border-top: 1px solid $base-gray-dark1;
+      cursor: default;
       &.active {
         color: $argenta;
       }
@@ -71,6 +73,11 @@
   }
   ul{
     padding-left: 0;
+  }
+}
+@media (max-width: 800px) {
+  .departments {
+    display: none;
   }
 }
 </style>

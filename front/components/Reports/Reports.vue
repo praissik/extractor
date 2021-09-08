@@ -1,18 +1,25 @@
 <template>
   <div class="reports">
     <!--  <Notifications emit="notify"></Notifications> -->
-    <ul class="reports__list">
-      <li v-for="(r, lp) in filterReports" :key="r.id"
-          class="reports__list__row"
-          :class="{first: lp == 0}"
-          @click="rowClicked(r)"
-        >
-          {{ lp+1 }}.
-          {{ r.name }}
-          {{ r.parametersID }}
-          {{ r.departmentID }}
-      </li>
-    </ul>
+    <template v-if="filterReports.length > 0">
+      <ul class="reports__list">
+        <li v-for="(r, lp) in filterReports" :key="r.id"
+            class="reports__list__row"
+            :class="{first: lp == 0}"
+            @click="rowClicked(r)"
+          >
+            {{ lp+1 }}.
+            {{ r.name }}
+            {{ r.parametersID }}
+            {{ r.departmentID }}
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <div class="reports__empty">
+        Brak raportów o takiej nazwie
+      </div>
+    </template>
   <ParametersForm />
   </div>
 </template>
@@ -96,7 +103,7 @@
     font-size: 16px;
     width: 100%;
     background-color: $base-white;
-    border-top: 15px solid $base-white;
+    padding: 15px 0;
     border-left: 20px solid $base-white;
     border-right: 20px solid $base-white;
     &__row {
@@ -106,6 +113,7 @@
       padding: 15px 20px 15px 20px;
       border-top: 1px solid $base-gray-dark1;
       transition: 250ms ease-out;
+      cursor: default;
       &.first{
         border-top: 0;
       }
@@ -116,6 +124,15 @@
   }
   ul{
     padding-left: 0;
+  }
+  &__empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $base-white;
+    padding: 30px;
+    font-size: 16px;
+    width: 100%;
   }
 }
 

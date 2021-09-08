@@ -5,14 +5,12 @@
       <div class="header">
         <div class="header__item">
           <Logo />
-          <FilterReports />
+          <FilterName />
           <DepartmentsMenu />
         </div>
       </div>
       <div class="body">
-        <div class="leftside">
-          <DepartmentsList />
-        </div>
+        <DepartmentsList />
         <div class="article">
           <Reports />
         </div>
@@ -56,10 +54,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 80px;
   background-color: $base-white;
   &__item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     max-width: 1200px;
     width: 100%;
@@ -69,12 +67,6 @@
   display: flex;
   height: fit-content;
   margin-bottom: 100px;
-  .leftside {
-    display: flex;
-    height: fit-content;
-    max-width: 230px;
-    width: 100%;
-  }
   .article {
     display: flex;
     flex-wrap: wrap;
@@ -93,11 +85,4 @@
   background-color: $base-gray-light1;
 }
 
-@media (max-width: 800px) {
-  .body {
-    .leftside {
-      display: none;
-    }
-  }
-}
 </style>

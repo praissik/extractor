@@ -28,14 +28,13 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: white;
+  background-color: $base-white;
   z-index: 1;
-  max-width: 1200px;
   width: 100%;
   height: 100vh;
   padding-bottom: 100px;
   & img {
-    width: 24vh;
+    width: 22vh;
   }
   .text {
     display: flex;
@@ -60,7 +59,7 @@
 @media (max-width: 800px) {
   .loading-background {
     & img {
-      width: 23vw;
+      width: 22vw;
     }
     .text {
       font-size: 8vw;
