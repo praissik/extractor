@@ -40,13 +40,16 @@ export const mutations = {
 export const actions = {
 
     GetData({ commit }) {
-        return this.$axios.get('/data')
-            .then(response => {
-                commit('setData', response.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        return new Promise((resolve, reject) => {
+            this.$axios.get('/data')
+                .then(response => {
+                    commit('setData', response.data)
+                    resolve(response)
+                })
+                .catch(error => {
+                    reject(error.message)
+                })
+        })
     },
 
     GetReports({ commit }) {

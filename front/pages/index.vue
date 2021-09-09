@@ -1,18 +1,23 @@
 <template>
   <v-app>
     <div class="main">
-      <LoadingBackground />
-      <div class="leftside">
-        <Logo />
-        <DepartmentsList />
-      </div>
-      <div class="body">
-        <FilterName />
-        <Reports />
-      </div>
-      <div class="footer">
-        Argenta © {{ currentYear }}
-      </div>
+      <template v-if="retrieveData">
+        <LoadingBackground />
+        <div class="leftside">
+          <Logo />
+          <DepartmentsList />
+        </div>
+        <div class="body">
+          <FilterName />
+          <Reports />
+        </div>
+        <div class="footer">
+          Argenta © {{ currentYear }}
+        </div>
+      </template>
+      <template v-else>
+        <ErrorRetrieveData />
+      </template>
     </div>
   </v-app>
 </template>
@@ -21,12 +26,16 @@
   export default {
     data () {
       return {
-        currentYear: new Date().getFullYear()
+        currentYear: new Date().getFullYear(),
+        retrieveData: true
       }
     },
 
     mounted() {
       this.$store.dispatch('reports/GetData')
+        .catch(() => {
+          this.retrieveData = false
+        })
     }
   }
 </script>
