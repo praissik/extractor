@@ -23,8 +23,10 @@
 <style lang="scss">
 .filterName {
   display: flex;
+  max-width: 1000px;
   width: 100%;
   padding-top: 22px;
+  background-color: $base-white;
   .v-input {
     max-width: 450px;
     padding: 0 0 0 80px;
@@ -41,15 +43,16 @@
     }
   }
 }
-@media (max-width:  620px) {
+@media (max-width:  680px) {
   .filterName {
     display: flex;
-  width: 100%;
-    max-width: 620px;
+    justify-content: center;
+    width: 100%;
+    max-width: 680px;
     .v-input {
-      max-width: 390px;
-      min-width: 200px;
-      padding: 0 0 0 50px;
+      max-width: 240px;
+      width: 100%;
+      padding: 0 40px;
     }
   }
 }

@@ -31,8 +31,17 @@
     }
 }
 @media (max-width: 800px) {
-  .logo {
-    max-width: fit-content;
-  }
+    .logo {
+        max-width: fit-content;
+    }
+}
+@media (max-width:  680px) {
+    .logo {
+        max-width: 680px;
+        width: 100%;
+        &__flex {
+            justify-content: center;
+        }
+    }
 }
 </style>
