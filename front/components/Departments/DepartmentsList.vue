@@ -1,29 +1,28 @@
 <template>
-  <div class="departments">
-    <ul class="departments__list" @click="setFilterDepartment">
-      <li class="departments__list__row first"
-          :class="{active: filterDepartment == 0}"
-          @click="selectedDepartment = 0"
-        >
-        Wszystkie
-      </li>
-      <li v-for="d in departments" :key="d.departmentID"
-          class="departments__list__row"
-          :class="{active: filterDepartment == d.departmentID}"
-          @click="selectedDepartment = d.departmentID"
-        >
-        {{ d.name }}
-      </li>
-    </ul>
-  </div>
+  <ul class="departments-list" @click="setFilterDepartmentID">
+    <li class="departments-list__row first"
+        :class="{active: filterDepartmentID == 0}"
+        @click="selectedDepartmentID = 0"
+      >
+      Wszystkie
+    </li>
+    <li v-for="d in departments" :key="d.departmentID"
+        class="departments-list__row"
+        :class="{
+          active: filterDepartmentID == d.departmentID
+        }"
+        @click="selectedDepartmentID = d.departmentID"
+      >
+      {{ d.name }}
+    </li>
+  </ul>
 </template>
-
 
 <script>
   export default {
     data() {
       return {
-        selectedDepartment: 0
+        selectedDepartmentID: 0
       }
     },
 
@@ -31,36 +30,37 @@
       departments () {
         return this._.orderBy(this.$store.state.reports.departments, 'name')
       },
-      filterDepartment () {
-        return this.$store.state.reports.filterDepartment
+      filterDepartmentID () {
+        return this.$store.state.reports.filterDepartmentID
       }
     },
 
     methods: {
-      setFilterDepartment () {
-        this.$store.dispatch('reports/SetFilterDepartment', this.selectedDepartment)
+      setFilterDepartmentID () {
+        this.$store.dispatch('reports/SetFilterDepartmentID', this.selectedDepartmentID)
       }
     }
   }
 </script>
 
 <style lang="scss">
-.departments {
-  display: flex;
-  height: fit-content;
-  max-width: 230px;
-  width: 100%;
-  padding: 15px 0 0 0;
-  &__list {
+.leftside {
+  ul{
+    padding-left: 0;
+  }
+  .departments-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
     list-style-type: none;
     font-size: 16px;
-    width: 100%;
     background-color: $base-white;
     &__row {
       display: flex;
+      width: 100%;
       justify-content: flex-start;
-      align-items: center;
-      padding: 10px 0 10px 20px;
+      padding: 10px 0 10px 30px;
       border-top: 1px solid $base-gray-dark1;
       cursor: default;
       &.active {
@@ -71,13 +71,10 @@
       }
     }
   }
-  ul{
-    padding-left: 0;
-  }
-}
-@media (max-width: 800px) {
-  .departments {
-    display: none;
+  @media (max-width: 800px) {
+    .departments-list {
+      display: none;
+    }
   }
 }
 </style>

@@ -52,16 +52,14 @@
         return this.reports.filter(data => (!this.filterName
             || data.name.toLowerCase().includes(this.filterName.toLowerCase()))
               &&
-              (this.filterDepartment === 0
-              || data.departmentID === this.filterDepartment))
+              (this.filterDepartmentID === 0
+              || data.departmentID === this.filterDepartmentID))
       },
       filterName () {
-        console.log(this.$store.state.reports.filterName)
         return this.$store.state.reports.filterName
       },
-      filterDepartment () {
-        console.log(this.$store.state.reports.filterDepartment)
-        return this.$store.state.reports.filterDepartment
+      filterDepartmentID () {
+        return this.$store.state.reports.filterDepartmentID
       }
     },
 
@@ -97,12 +95,12 @@
 
 .reports {
   display: flex;
-  padding: 15px 0 0 20px;
+  background-color: $base-white;
+  margin: 15px 0 0 20px;
   &__list {
     list-style-type: none;
     font-size: 16px;
     width: 100%;
-    background-color: $base-white;
     padding: 15px 0;
     border-left: 20px solid $base-white;
     border-right: 20px solid $base-white;
@@ -110,7 +108,7 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      padding: 15px 20px 15px 20px;
+      padding: 15px 30px;
       border-top: 1px solid $base-gray-dark1;
       transition: 250ms ease-out;
       cursor: default;
@@ -135,12 +133,14 @@
     width: 100%;
   }
 }
-
-
 @media (max-width: 800px) {
   .reports {
-    padding-left: 0;
-    padding-right: 0;
+    margin: 15px 0 0 0;
+    &__list {
+      &__row {
+        padding: 15px 10px;
+      }
+    }
   }
 }
 </style>

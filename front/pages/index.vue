@@ -6,6 +6,7 @@
         <div class="leftside">
           <Logo />
           <DepartmentsList />
+          <DepartmentsMenu />
         </div>
         <div class="body">
           <FilterName />
@@ -40,7 +41,7 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss"> 
 .main {
   display: flex;
   flex-direction: row;
@@ -52,11 +53,9 @@
 }
 .leftside {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   width: 100%;
   max-width: 230px;
-  background-color: $base-white;
 }
 .body {
   display: flex;
@@ -79,16 +78,23 @@
 }
 
 
-@media (max-width:  680px) {
-  .header {
+@media (max-width:  800px) {
+  .main {
+    flex-wrap: wrap;
+  }
+  .leftside {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    max-width: 800px;
     width: 100%;
     background-color: $base-white;
-    &__item {
-      display: flex;
-      flex-wrap: wrap;
-    }
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .leftside {
+    flex-wrap: wrap;
   }
 }
 </style>

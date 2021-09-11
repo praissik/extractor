@@ -25,11 +25,12 @@
   display: flex;
   max-width: 1000px;
   width: 100%;
-  padding-top: 22px;
+  min-height: 80px;
+  max-height: 80px;
+  padding: 10px 60px 0 70px;
   background-color: $base-white;
   .v-input {
-    max-width: 450px;
-    padding: 0 0 0 80px;
+    max-width: 600px;
   }
   .v-label, .v-text-field input {
     padding-left: 10px;
@@ -37,22 +38,11 @@
 }
 @media (max-width: 800px) {
   .filterName {
-    .v-input {
-      max-width: 350px;
-      padding: 0 10px 0 80px;
-    }
-  }
-}
-@media (max-width:  680px) {
-  .filterName {
-    display: flex;
-    justify-content: center;
+    max-width: 800px;
     width: 100%;
-    max-width: 680px;
+    padding: 10px 30px;
     .v-input {
-      max-width: 240px;
-      width: 100%;
-      padding: 0 40px;
+      max-width: 100%;
     }
   }
 }

@@ -2,7 +2,7 @@ export const state = () => ({
     reports: [],
     parameters: [],
     departments: [],
-    filterDepartment: 0,
+    filterDepartmentID: 0,
     filterName: ''
 })
 
@@ -28,8 +28,8 @@ export const mutations = {
         state.departments = departments
     },
 
-    setFilterDepartment (state, filterDepartment) {
-        state.filterDepartment = filterDepartment
+    setFilterDepartmentID (state, filterDepartmentID) {
+        state.filterDepartmentID = filterDepartmentID
     },
 
     setFilterName (state, filterName) {
@@ -122,8 +122,8 @@ export const actions = {
         })
     },
 
-    SetFilterDepartment({ commit }, filterDepartment) {
-        commit('setFilterDepartment', filterDepartment)
+    SetFilterDepartmentID({ commit }, filterDepartmentID) {
+        commit('setFilterDepartmentID', filterDepartmentID)
     },
 
     SetFilterName({ commit }, filterName) {

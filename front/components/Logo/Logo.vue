@@ -1,10 +1,8 @@
 <template>
     <div class="logo">
-        <div class="logo__flex">
-            <img class="logo__flex__img" src="/logo-only.png">
-            <div class="logo__flex__text">
-                Raporty
-            </div>
+        <img class="logo__img" src="/logo-only.png">
+        <div class="logo__text">
+            Raporty
         </div>
     </div>
 </template>
@@ -12,36 +10,32 @@
 <style lang="scss">
 .logo {
     display: flex;
-    max-width: 230px;
+    justify-content: flex-start;
+    align-items: center;
     width: 100%;
-    &__flex {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 20px 0 20px 36px;
-        &__img {
-            float: left;
-            height: 44px;
-        }
-        &__text {
-            float: left;
-            font-size: 20px;
-            padding-left: 12px;
-        }
+    min-height: 80px;
+    max-height: 80px;
+    padding: 0 40px;
+    background-color: $base-white;
+    &__img {
+        float: left;
+        height: 44px;
+    }
+    &__text {
+        float: left;
+        font-size: 20px;
+        padding-left: 12px;
     }
 }
 @media (max-width: 800px) {
     .logo {
-        max-width: fit-content;
+        max-width: 560px;
     }
 }
-@media (max-width:  680px) {
+@media (max-width: 480px) {
     .logo {
-        max-width: 680px;
-        width: 100%;
-        &__flex {
-            justify-content: center;
-        }
+        min-width: fit-content;
+        max-width: 520px;
     }
 }
 </style>
