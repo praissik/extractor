@@ -35,7 +35,7 @@
 @media (max-width: 480px) {
     .logo {
         min-width: fit-content;
-        max-width: 520px;
+        max-width: 480px;
     }
 }
 </style>

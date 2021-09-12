@@ -60,7 +60,6 @@
 .body {
   display: flex;
   flex-direction: column;
-  height: fit-content;
   max-width: 1000px;
   width: 100%;
   margin-bottom: 100px;
@@ -74,13 +73,15 @@
   bottom: 0;
   padding-right: 20px;
   font-size: 14px;
-  background-color: $base-gray-light1;
+  background-color: $base-gray-dark1;
 }
 
 
 @media (max-width:  800px) {
   .main {
     flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
   }
   .leftside {
     display: flex;

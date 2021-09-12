@@ -47,7 +47,7 @@ export const actions = {
                     resolve(response)
                 })
                 .catch(error => {
-                    reject(error.message)
+                    reject(error)
                 })
         })
     },
@@ -83,7 +83,6 @@ export const actions = {
     },
 
     GenerateReport({dispatch}, data) {
-        console.log(data)
         return this.$axios.post('/report/generate', {
                 ...data
             })
