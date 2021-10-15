@@ -52,7 +52,6 @@ func SetCellValues(f *excelize.File, rows *sql.Rows) {
 	}
 }
 
-//func setColumnHeaders(f *excelize.File, rows *sql.Rows) {
 func setColumnHeaders(f *excelize.File, rows *sql.Rows, columns []string, values []interface{}) {
 	var cellName string
 
@@ -76,14 +75,20 @@ func FileExistsNoLongerThan(filename string, minutes int) bool {
 	modH, modMin, _ := info.ModTime().Clock()
 	nowH, nowMin, _ := time.Now().Clock()
 
-	//fmt.Println(modY, modM, modD, modH, modMin)
-	//fmt.Println(nowY, nowM, nowD, nowH, nowMin)
-
 	if modY == nowY && modM == nowM && modD == nowD {
 		if modH+1 == nowH {
 			nowMin = nowMin + 60
 		}
 		if nowMin-minutes < modMin {
+			return true
+		}
+	}
+	return false
+}
+
+func Contains(s []int32, e int32) bool {
+	for _, a := range s {
+		if a == e {
 			return true
 		}
 	}

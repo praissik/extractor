@@ -3,10 +3,15 @@ export const state = () => ({
     parameters: [],
     departments: [],
     filterDepartmentID: 0,
-    filterName: ''
+    filterString: '',
+    reportName: '',
+    sourceName: ''
 })
 
 export const getters = {
+    getReports: state => {
+        return state.reports
+    }
 }
 
 export const mutations = {
@@ -20,8 +25,38 @@ export const mutations = {
         state.reports = reports
     },
 
+    resetReport (state, data) {
+        Object(state.reports)[data.reportID] = data
+    },
+
     setParameters (state, parameters) {
         state.parameters = parameters
+    },
+
+    setSelectedDepartmentID (state, data) {
+        state.reports[data.reportID].departmentID = state.departments[data.departmentID].departmentID
+    },
+
+    setSelectedParameterID (state, data) {
+        if (Object(state.reports)[data.reportID].parametersID == null) {
+            Object(state.reports)[data.reportID].parametersID = [data.parameterID]
+        } else if (!Object(state.reports)[data.reportID].parametersID.includes(data.parameterID)) {
+            Object(state.reports)[data.reportID].parametersID.push(data.parameterID)
+        } else {
+            Object(state.reports)[data.reportID].parametersID.splice(Object(state.reports)[data.reportID].parametersID.indexOf(data.parameterID), 1)
+        }
+    },
+
+    setActive (state, data) {
+        state.reports[data.reportID].active = data.active
+    },
+
+    setReportName (state, data) {
+        state.reports[data.reportID].reportName = data.reportName
+    },
+
+    setSourceName (state, data) {
+        state.reports[data.reportID].sourceName = data.sourceName
     },
 
     setDepartments (state, departments) {
@@ -31,14 +66,13 @@ export const mutations = {
     setFilterDepartmentID (state, filterDepartmentID) {
         state.filterDepartmentID = filterDepartmentID
     },
-
-    setFilterName (state, filterName) {
-        state.filterName = filterName
+    
+    setFilterString (state, filterString) {
+        state.filterString = filterString
     }
 }
 
 export const actions = {
-
     GetData({ commit }) {
         return new Promise((resolve, reject) => {
             this.$axios.get('/data')
@@ -62,6 +96,10 @@ export const actions = {
             })
     },
 
+    ResetReport({ commit }, data) {
+        commit('resetReport', data)
+    },
+
     GetParameters({ commit }) {
         return this.$axios.get('/parameters')
             .then(response => {
@@ -70,6 +108,26 @@ export const actions = {
             .catch(error => {
                 console.log(error)
             })
+    },
+
+    SetSelectedDepartmentID({ commit }, data) {
+        commit('setSelectedDepartmentID', data)
+    },
+
+    SetSelectedParameterID({ commit }, data) {
+        commit('setSelectedParameterID', data)
+    },
+
+    SetActive({ commit }, data) {
+        commit('setActive', data)
+    },
+
+    SetReportName({ commit }, data) {
+        commit('setReportName', data)
+    },
+
+    SetSourceName({ commit }, data) {
+        commit('setSourceName', data)
     },
 
     GetDepartments({ commit }) {
@@ -83,6 +141,7 @@ export const actions = {
     },
 
     GenerateReport({dispatch}, data) {
+        $nuxt.$emit('notify', 'info')
         return this.$axios.post('/report/generate', {
                 ...data
             })
@@ -125,8 +184,8 @@ export const actions = {
         commit('setFilterDepartmentID', filterDepartmentID)
     },
 
-    SetFilterName({ commit }, filterName) {
-        commit('setFilterName', filterName)
+    SetFilterString({ commit }, filterString) {
+        commit('setFilterString', filterString)
     }
 }
 

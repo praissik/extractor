@@ -15,7 +15,7 @@
     width: 100%;
     min-height: 80px;
     max-height: 80px;
-    padding: 0 40px;
+    padding-left: 40px;
     background-color: $base-white;
     &__img {
         float: left;
@@ -29,7 +29,7 @@
 }
 @media (max-width: 800px) {
     .logo {
-        max-width: 560px;
+        max-width: 580px;
     }
 }
 @media (max-width: 480px) {

@@ -6,12 +6,11 @@
         <Notifications></Notifications>
         <div class="leftside">
           <Logo />
-          <DepartmentsList />
-          <DepartmentsMenu />
+          <AdminMenu />
         </div>
         <div class="body">
           <FilterString />
-          <Reports />
+          <AdminData />
         </div>
         <div class="footer">
           Argenta © {{ currentYear }}

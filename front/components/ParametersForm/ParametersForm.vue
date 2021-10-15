@@ -4,17 +4,17 @@
         v-model="isFormVisible"
         @click:outside="closeParametersForm()"
         >
-        <template v-if="report.reportID > 0">
+        <template v-if="report.id > 0">
             <v-card>
                 <v-card-title>
                     <span class="text-h6">{{ report.name }}</span>
                 </v-card-title>
-                <form>
+                <form class="parameters-form">
                     <v-layout justify-center>
-                        <div class="inputs">
+                        <div class="parameters-form__inputs">
                             <v-text-field
-                                v-if="report.parametersID.includes(parameters['1'].parameterID)"
                                 v-model="akronim"
+                                color="#D7172F"
                                 :label="parameters['1'].name"
                                 :error-messages="akronimErrors"
                                 required
@@ -24,6 +24,7 @@
                             <v-text-field
                                 v-if="report.parametersID.includes(parameters['2'].parameterID)"
                                 v-model="kod"
+                                color="#D7172F"
                                 :label="parameters['2'].name"
                                 :error-messages="kodErrors"
                                 required
@@ -33,6 +34,7 @@
                             <v-text-field
                                 v-if="report.parametersID.includes(parameters['3'].parameterID)"
                                 v-model="symbol"
+                                color="#D7172F"
                                 :label="parameters['3'].name"
                                 :error-messages="symbolErrors"
                                 required
@@ -42,6 +44,7 @@
                             <v-text-field
                                 v-if="report.parametersID.includes(parameters['4'].parameterID)"
                                 v-model="rokOS"
+                                color="#D7172F"
                                 :label="parameters['4'].name"
                                 :error-messages="rokOSErrors"
                                 required
@@ -50,7 +53,7 @@
                             ></v-text-field>
                         </div>
                     </v-layout>
-                    <div class="footer">
+                    <div class="parameters-form__footer">
                         <v-btn @click="submit"
                             depressed
                             :ripple="false"
@@ -138,7 +141,7 @@ export default {
 
             if (this.checkValidation()) {
                 this.$store.dispatch('reports/GenerateReport', {
-                    reportID: this.report.reportID,
+                    id: this.report.id,
                     akronim: this.akronim,
                     kod: this.kod,
                     symbol: this.symbol,
@@ -188,10 +191,6 @@ export default {
 
             return true
         }
-    },
-    
-    destroyed () {
-        console.log('destroyed11')
     }
 }
 </script>
@@ -208,17 +207,18 @@ export default {
             }
         }
     }
-    form {
+    .parameters-form {
         background: $base-white;
-        .inputs {
+        &__inputs {
             width: 50%;
             .v-input {
                 padding: 24px 0 0;
             }
         }
-        .footer {
+        &__footer {
             text-align: right;
-            padding: 5px 40px 15px 0;
+            padding: 15px 40px 15px 0;
+            background-color: $base-white;
             .v-btn {
                 background: none;
                 .fas {

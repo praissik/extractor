@@ -11,13 +11,11 @@
         <div class="retrieveData__info__header__error-icon">
           <img src="no-wifi.svg">
         </div>
-        <div class="retrieveData__info__header__error-title">Failed to receive data from the server</div>
+        <div class="retrieveData__info__header__error-title">Failed to connect with server</div>
       </div>
       <div class="retrieveData__info__message">
-        Check your internet connection.<br>
-        Be sure, you have access to your company network and
-        <a class="retrieveData__info__message__reload" @click="reloadPage()">reload</a>
-        the page.
+        Notify IT about this error.<br>
+        <a href="mailto:helpdesk@argenta.com.pl">helpdesk@argenta.com.pl</a>
       </div>
     </div>
     <div class="footer">

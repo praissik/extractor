@@ -16,6 +16,36 @@ func GetReports(w http.ResponseWriter, r *http.Request) {
 	er.Check(err)
 }
 
+func AddReport(w http.ResponseWriter, r *http.Request) {
+	logger.Console("Add Report")
+	var data report.Report
+	err := json.NewDecoder(r.Body).Decode(&data)
+	er.Check(err)
+
+	status := report.AddReport(data)
+	util.SetWriter(w, status)
+}
+
+func SetReport(w http.ResponseWriter, r *http.Request) {
+	logger.Console("Set Report")
+	var data report.Report
+	err := json.NewDecoder(r.Body).Decode(&data)
+	er.Check(err)
+
+	status := report.SetReport(data)
+	util.SetWriter(w, status)
+}
+
+func DeleteReport(w http.ResponseWriter, r *http.Request) {
+	logger.Console("Delete Report")
+	var data report.Report
+	err := json.NewDecoder(r.Body).Decode(&data)
+	er.Check(err)
+
+	status := report.DeleteReport(data)
+	util.SetWriter(w, status)
+}
+
 func GenerateReport(w http.ResponseWriter, r *http.Request) {
 	logger.Console("Generate Report")
 	var data report.RequestReportData

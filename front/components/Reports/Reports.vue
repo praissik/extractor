@@ -1,6 +1,5 @@
 <template>
   <div class="reports">
-    <!--  <Notifications emit="notify"></Notifications> -->
     <template v-if="filterReports.length > 0">
       <ul class="reports__list">
         <li v-for="(r, lp) in filterReports" :key="r.id"
@@ -8,10 +7,12 @@
             :class="{first: lp == 0}"
             @click="rowClicked(r)"
           >
+          <template v-if="r.active">
             {{ lp+1 }}.
-            {{ r.name }}
+            {{ r.reportName }}
             {{ r.parametersID }}
             {{ r.departmentID }}
+          </template>
         </li>
       </ul>
     </template>
@@ -33,7 +34,7 @@
         report: [],
         isEnable: true,
         data: {
-          reportID: null
+          id: null
         }
       };
     },
@@ -46,17 +47,19 @@
 
     computed: {
       reports () {
-        return this._.orderBy(this.$store.state.reports.reports, 'name')
+        return this._.orderBy(this.$store.state.reports.reports, 'reportName')
       },
       filterReports () {
-        return this.reports.filter(data => (!this.filterName
-            || data.name.toLowerCase().includes(this.filterName.toLowerCase()))
+        return this.reports.filter(data => (!this.filterString
+            || data.reportName.toLowerCase().includes(this.filterString.toLowerCase()))
               &&
               (this.filterDepartmentID === 0
-              || data.departmentID === this.filterDepartmentID))
+              || data.departmentID === this.filterDepartmentID)
+              &&
+              (data.active === true))
       },
-      filterName () {
-        return this.$store.state.reports.filterName
+      filterString () {
+        return this.$store.state.reports.filterString
       },
       filterDepartmentID () {
         return this.$store.state.reports.filterDepartmentID
@@ -68,7 +71,8 @@
         if (this.isEnable) {
           this.pausingButtonEvent(1000)
           if (report.parametersID == null) {
-            this.data.reportID = report.reportID
+            this.data.id = report.id
+            console.log(this.data)
             this.$store.dispatch('reports/GenerateReport', this.data)
           } else {
             this.$nuxt.$emit('openParametersForm', report)
@@ -86,7 +90,7 @@
         return new Promise((resolve) => {
           setTimeout(resolve, ms);
         });
-      },
+      }
     }
   }
 </script>

@@ -9,10 +9,10 @@ const (
 	REMOVE   = 4
 	GENERATE = 5
 
-	DATA       = 0
-	REPORT     = 1
-	PARAMETER  = 2
-	DEPARTMENT = 3
+	DATA       = 1
+	REPORT     = 2
+	PARAMETER  = 3
+	DEPARTMENT = 4
 )
 
 func DB(methodID int32, typeID int32, tupleID int32, status bool) {

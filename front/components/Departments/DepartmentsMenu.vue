@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="departments-menu"
-      @mouseover="showMenu = true"
-      @mouseleave="showMenu = false">
-      <div class="departments-menu__filterDepartment">
+    <div class="departments-menu">
+      <div class="departments-menu__filterDepartment"
+        :class="{active: showMenu == true}"
+        @mousedown="showMenu = !showMenu">
         {{ filterDepartmentName }}
           <i class="arrow down"></i>
       </div>
@@ -60,9 +60,6 @@
     methods: {
       setFilterDepartmentID () {
         this.$store.dispatch('reports/SetFilterDepartmentID', this.selectedDepartmentID)
-      },
-      hover () {
-        console.log('hovvvver')
       }
     }
   }
@@ -79,8 +76,8 @@
     position: relative;
     flex-direction: column;
     align-items: flex-end;
-    min-width: 240px;
-    max-width: 240px;
+    min-width: 220px;
+    max-width: 220px;
     width: 100%;
     font-size: 16px;
     margin: 19px 40px 0 0;
@@ -93,11 +90,10 @@
       max-height: 44px;
       min-height: 44px;
       padding-left: 30px;
-      background-color: $base-gray-light2;
-      border-bottom: 1px solid $argenta-transparent-dark;
+      border-bottom: 1px solid $base-gray-dark1;
       & .arrow.down {
         position: absolute;
-        border: solid black;
+        border: solid $argenta;
         border-width: 0 3px 3px 0;
         display: inline-block;
         padding: 3px;
@@ -105,7 +101,7 @@
         transform: rotate(45deg);
         -webkit-transform: rotate(45deg);
         animation-name: rotate-out;
-        animation-duration: 400ms;
+        animation-duration: 200ms;
         animation-fill-mode: forwards;
       }
     }
@@ -136,10 +132,10 @@
       }
     }
   }
-  .departments-menu:hover {
+  .departments-menu__filterDepartment.active {
     & .arrow.down {
       animation-name: rotate-in;
-      animation-duration: 400ms;
+      animation-duration: 200ms;
       animation-fill-mode: forwards;
     }
   }
@@ -148,15 +144,14 @@
       display: flex;
     }
   }
-  @media (max-width: 480px) {
+  @media (max-width: 460px) {
     .departments-menu {
-      min-width: fit-content;
-      max-width: 480px;
+      max-width: 460px;
+      min-width: 180px;
       justify-content: center;
-    margin: 10px 20px;
-      &__list {
-        min-width: 200px;
-        max-width: 200px;
+      margin: 10px 0 20px;
+      &__filterDepartment {
+        padding-left: 20px;
       }
     }
   }

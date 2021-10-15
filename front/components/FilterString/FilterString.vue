@@ -1,6 +1,11 @@
 <template>
-  <div class="filterName">
-    <v-text-field label="Wyszukaj" v-model="filterName" @input="setFilterName" autofocus></v-text-field>
+  <div class="filterString">
+    <v-text-field 
+        label="Wyszukaj"
+        color="#D7172F"
+        v-model="filterString"
+        @input="setFilterString"
+        autofocus></v-text-field>
   </div>
 </template>
 
@@ -8,20 +13,20 @@
   export default {
     data() {
       return {
-        filterName: ''
+        filterString: ''
       }
     },
 
     methods: {
-      setFilterName () {
-        this.$store.dispatch('reports/SetFilterName', this.filterName)
+      setFilterString () {
+        this.$store.dispatch('reports/SetFilterString', this.filterString)
       }
     }
   }
 </script>
 
 <style lang="scss">
-.filterName {
+.filterString {
   display: flex;
   max-width: 1000px;
   width: 100%;
@@ -37,7 +42,7 @@
   }
 }
 @media (max-width: 800px) {
-  .filterName {
+  .filterString {
     max-width: 800px;
     width: 100%;
     padding: 10px 30px;
