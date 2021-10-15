@@ -7,12 +7,13 @@
         <template v-if="report.id > 0">
             <v-card>
                 <v-card-title>
-                    <span class="text-h6">{{ report.name }}</span>
+                    <span class="text-h6">{{ report.reportName }}</span>
                 </v-card-title>
                 <form class="parameters-form">
                     <v-layout justify-center>
                         <div class="parameters-form__inputs">
                             <v-text-field
+                                v-if="report.parametersID.includes(parameters['1'].parameterID)"
                                 v-model="akronim"
                                 color="#D7172F"
                                 :label="parameters['1'].name"
